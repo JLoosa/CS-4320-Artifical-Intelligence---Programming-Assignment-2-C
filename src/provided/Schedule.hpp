@@ -30,6 +30,10 @@ public:
 
 	int getNumTimeSlots() const;
 
+	void reset();
+
+	Schedule* copy();
+
 };
 
 #endif /* PROVIDED_SCHEDULE_HPP_ */

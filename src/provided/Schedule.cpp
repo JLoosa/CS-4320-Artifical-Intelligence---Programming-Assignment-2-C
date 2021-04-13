@@ -7,6 +7,8 @@
 
 #include "Schedule.hpp"
 
+#include <string.h>
+
 Schedule::Schedule(const int nRooms, const int nTimeSlots) :
 		schedule { new int[nRooms * nTimeSlots] } {
 	this->nRooms = nRooms;
@@ -42,4 +44,14 @@ int Schedule::getNumRooms() const {
 
 int Schedule::getNumTimeSlots() const {
 	return this->nTimeSlots;
+}
+
+void Schedule::reset() {
+	memset(schedule.get(), -1, nRooms * nTimeSlots);
+}
+
+Schedule* Schedule::copy() {
+	Schedule cp(nRooms, nTimeSlots);
+	memcpy(cp.schedule.get(), schedule.get(), nRooms*nTimeSlots);
+	return &cp;
 }
