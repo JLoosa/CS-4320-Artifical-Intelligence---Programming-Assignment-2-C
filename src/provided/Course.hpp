@@ -5,7 +5,7 @@
  *      Author: Jacob
  */
 
-#include "Building.hpp"
+class Building;
 
 #ifndef PROVIDED_COURSE_HPP_
 #define PROVIDED_COURSE_HPP_
@@ -14,7 +14,7 @@ class Course {
 
 private:
 	float value;
-	Building* preferredLocation;
+	Building *preferredLocation;
 	float *timeSlotValues;
 	short enrolledStudents;
 

@@ -6,7 +6,6 @@
  */
 
 #include "Course.hpp"
-#include <stdio.h>
 
 Course::Course(const float value, Building *preferredLocation,
 		float *timeSlotValues, const short enrolledStudents) {

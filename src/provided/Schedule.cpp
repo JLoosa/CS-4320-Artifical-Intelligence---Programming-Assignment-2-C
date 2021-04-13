@@ -6,11 +6,9 @@
  */
 
 #include "Schedule.hpp"
-#include <memory>
 
-Schedule::Schedule(const int nRooms, const int nTimeSlots)
-: schedule{new int[nRooms * nTimeSlots]}
-{
+Schedule::Schedule(const int nRooms, const int nTimeSlots) :
+		schedule { new int[nRooms * nTimeSlots] } {
 	this->nRooms = nRooms;
 	this->nTimeSlots = nTimeSlots;
 }

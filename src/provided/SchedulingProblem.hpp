@@ -4,10 +4,10 @@
  *  Created on: Apr 12, 2021
  *      Author: Jacob
  */
-#include "Building.hpp"
-#include "Course.hpp"
-#include "Room.hpp"
-#include "Schedule.hpp"
+class Building;
+class Course;
+class Room;
+class Schedule;
 
 #ifndef PROVIDED_SCHEDULINGPROBLEM_HPP_
 #define PROVIDED_SCHEDULINGPROBLEM_HPP_
@@ -46,7 +46,7 @@ public:
 
 	Room* getRoom(int);
 
-	const int getNumCourses() ;
+	const int getNumCourses();
 
 	Course* getCourse(int);
 

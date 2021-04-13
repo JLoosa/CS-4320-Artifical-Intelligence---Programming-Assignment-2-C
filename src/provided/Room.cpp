@@ -7,8 +7,7 @@
 
 #include "Room.hpp"
 
-Room::Room(Building* building, short capacity)
-{
+Room::Room(Building *building, short capacity) {
 	this->building = building;
 	this->capacity = capacity;
 }

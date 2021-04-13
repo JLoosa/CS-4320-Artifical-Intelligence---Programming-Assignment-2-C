@@ -5,7 +5,7 @@
  *      Author: Jacob
  */
 
-#include "Building.hpp"
+class Building;
 
 #ifndef PROVIDED_ROOM_HPP_
 #define PROVIDED_ROOM_HPP_
@@ -13,7 +13,7 @@
 class Room {
 
 private:
-	Building* building;
+	Building *building;
 	short capacity;
 
 public:

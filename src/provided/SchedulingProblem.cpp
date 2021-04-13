@@ -10,8 +10,13 @@
 #include <stdio.h>
 #include <cmath>
 #include <cstdlib>
-#include <cstring>
+#include <string.h>
 #include <ctime>
+
+#include "Building.hpp"
+#include "Course.hpp"
+#include "Room.hpp"
+#include "Schedule.hpp"
 
 const int randInt(const int max) {
 	return rand() % max;
@@ -117,7 +122,7 @@ float SchedulingProblem::evaluateSchedule(Schedule *schedule) {
 
 	// Check that all classes are only assigned once
 	bool assignedCourses[nCourses];
-	std::memset(assignedCourses, false, nCourses);
+	memset(assignedCourses, false, nCourses);
 	int courseIndex;
 	for (int room = 0; room < nRooms; room++) {
 		for (int time = 0; time < nTimeSlots; time++) {

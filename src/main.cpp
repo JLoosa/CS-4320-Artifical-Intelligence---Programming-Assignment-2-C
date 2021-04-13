@@ -11,7 +11,6 @@
 #include <exception>
 #include <string>
 
-#include "provided/Schedule.hpp"
 #include "provided/SchedulingProblem.hpp"
 #include "provided/SearchAlgorithm.hpp"
 #include "provided/SearchAlgorithmNaive.hpp"
@@ -30,7 +29,7 @@ SearchAlgorithm* searchByID(int id) {
 
 int main(int argc, char **argv) {
 
-	setvbuf((_iobuf*) stdout, (char *)NULL, _IONBF, 0 );
+	setvbuf((_iobuf*) stdout, (char*) NULL, _IONBF, 0);
 
 	// Check for correct input size
 	if (argc != 7) {

@@ -5,8 +5,10 @@
  *      Author: Jacob
  */
 
-#include "SchedulingProblem.hpp"
 #include "SearchAlgorithm.hpp"
+
+class Schedule;
+class SchedulingProblem;
 
 #ifndef PROVIDED_SEARCHALGORITHMNAIVE_HPP_
 #define PROVIDED_SEARCHALGORITHMNAIVE_HPP_
