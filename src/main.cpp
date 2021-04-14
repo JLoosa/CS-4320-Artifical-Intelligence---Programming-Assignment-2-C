@@ -11,9 +11,10 @@
 #include <exception>
 #include <string>
 
-#include "provided/SchedulingProblem.hpp"
-#include "provided/SearchAlgorithm.hpp"
-#include "provided/SearchAlgorithmNaive.hpp"
+#include "scheduling/SearchAlgorithmSimulatedAnnealing.hpp"
+#include "scheduling/provided/SchedulingProblem.hpp"
+#include "scheduling/provided/SearchAlgorithm.hpp"
+#include "scheduling/provided/SearchAlgorithmNaive.hpp"
 
 /**
  * Add your algorithms as cases
@@ -22,6 +23,8 @@ SearchAlgorithm* searchByID(int id) {
 	switch (id) {
 	case 0:
 		return new SearchAlgorithmNaive();
+	case 1:
+		return new SearchAlgorithmSimulatedAnnealing();
 	default:
 		return nullptr;
 	}
@@ -80,6 +83,8 @@ int main(int argc, char **argv) {
 	SchedulingProblem schedulingProblem(lSeed);
 	schedulingProblem.createRandomInstance(nBuildings, nRooms, nCourses);
 	printf("Scheduling Problem generated.\n");
+
+	schedulingProblem.evaluateSchedule(schedulingProblem.getEmptySchedule());
 
 	Schedule *solution;
 

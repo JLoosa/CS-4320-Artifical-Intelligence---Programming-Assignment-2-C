@@ -36,6 +36,8 @@ public:
 
 	Schedule* getEmptySchedule();
 
+	Schedule* getRandomSchedule();
+
 	float evaluateSchedule(Schedule*);
 
 	const int getNumBuildings();

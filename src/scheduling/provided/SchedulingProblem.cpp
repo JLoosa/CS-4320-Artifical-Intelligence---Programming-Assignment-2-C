@@ -8,9 +8,9 @@
 #include "SchedulingProblem.hpp"
 
 #include <stdio.h>
+#include <string.h>
 #include <cmath>
 #include <cstdlib>
-#include <string.h>
 #include <ctime>
 
 #include "Building.hpp"
@@ -103,22 +103,37 @@ void SchedulingProblem::createRandomInstance(int nBuildings, int nRooms,
 }
 
 Schedule* SchedulingProblem::getEmptySchedule() {
-	printf("Scheduling Problem: Creating empty schedule.\n");
 	Schedule *schedule = new Schedule(nRooms, nTimeSlots);
-	for (int r = 0; r < nRooms; r++) {
-		for (int t = 0; t < nTimeSlots; t++) {
-			schedule->setCourse(r, t, -1);
-		}
+	schedule->reset();
+	return schedule;
+}
+
+Schedule* SchedulingProblem::getRandomSchedule() {
+	Schedule *schedule = getEmptySchedule();
+
+	int courseIndexOffset = randInt(nCourses);
+	int courseID;
+	int scheduleSize = nRooms * nTimeSlots;
+
+	// Get a random set of courses
+	for (int courseIndex = 0; courseIndex < nCourses; courseIndex++) {
+		courseID = (courseIndexOffset + courseIndex) % nCourses;
+		// Assign them to a random spot
+		schedule->rawDataPointer()[randInt(scheduleSize)] = courseID;
 	}
+
 	return schedule;
 }
 
 float SchedulingProblem::evaluateSchedule(Schedule *schedule) {
 	// Check Schedule Dimensions
-	if (schedule->getNumRooms() != nRooms)
+	if (schedule->getNumRooms() != nRooms
+			|| schedule->getNumTimeSlots() != nTimeSlots) {
+		printf("Bad Dimensions. %d by %d, expected %d by %d\n",
+				schedule->getNumRooms(), schedule->getNumTimeSlots(), nRooms,
+				nTimeSlots);
 		return -INFINITY;
-	if (schedule->getNumTimeSlots() != nTimeSlots)
-		return -INFINITY;
+	}
 
 	// Check that all classes are only assigned once
 	bool assignedCourses[nCourses];
@@ -131,9 +146,13 @@ float SchedulingProblem::evaluateSchedule(Schedule *schedule) {
 			if (courseIndex < 0 || courseIndex >= nCourses)
 				continue;
 			// Check for double assignment
-			if (assignedCourses[courseIndex])
+			if (assignedCourses[courseIndex]) {
+				printf("Course exists more than once: %d\n", courseIndex);
 				return -INFINITY;
-			assignedCourses[courseIndex] = true;
+			}
+			else {
+				assignedCourses[courseIndex] = true;
+			}
 		}
 	}
 

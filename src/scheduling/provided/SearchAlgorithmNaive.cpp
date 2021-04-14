@@ -19,7 +19,7 @@ Schedule* SearchAlgorithmNaive::solve(SchedulingProblem *problem,
 	Schedule *schedule = problem->getEmptySchedule();
 	Course *course;
 	bool scheduled;
-	for (int courseIndex = 0; courseIndex < problem->getNumCourses();
+	for (int courseIndex = 1; courseIndex < problem->getNumCourses();
 			courseIndex++) {
 		course = problem->getCourse(courseIndex);
 		scheduled = false;

@@ -17,22 +17,24 @@ private:
 	int nTimeSlots;
 	std::unique_ptr<int[]> schedule;
 
-	int getArrayIndex(const int, const int) const;
+	const int getArrayIndex(const int, const int);
 
 public:
 	Schedule(const int, const int);
 
-	int getCourse(const int, const int) const;
+	const int getCourse(const int, const int);
 
 	bool setCourse(const int, const int, const int);
 
-	int getNumRooms() const;
+	const int getNumRooms();
 
-	int getNumTimeSlots() const;
+	const int getNumTimeSlots() ;
 
 	void reset();
 
 	Schedule* copy();
+
+	int* rawDataPointer();
 
 };
 

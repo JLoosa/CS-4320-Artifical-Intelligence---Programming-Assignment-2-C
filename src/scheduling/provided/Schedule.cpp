@@ -10,12 +10,12 @@
 #include <string.h>
 
 Schedule::Schedule(const int nRooms, const int nTimeSlots) :
-		schedule { new int[nRooms * nTimeSlots] } {
+		schedule ( new int[nRooms * nTimeSlots] ) {
 	this->nRooms = nRooms;
 	this->nTimeSlots = nTimeSlots;
 }
 
-int Schedule::getArrayIndex(const int room, const int timeSlot) const {
+const int Schedule::getArrayIndex(const int room, const int timeSlot) {
 	if (room < 0 || timeSlot < 0)
 		return -1;
 	if (room >= nRooms || timeSlot >= nTimeSlots)
@@ -23,7 +23,7 @@ int Schedule::getArrayIndex(const int room, const int timeSlot) const {
 	return room * nTimeSlots + timeSlot;
 }
 
-int Schedule::getCourse(const int room, const int timeSlot) const {
+const int Schedule::getCourse(const int room, const int timeSlot) {
 	int slot = getArrayIndex(room, timeSlot);
 	if (slot == -1)
 		return -1;
@@ -38,20 +38,24 @@ bool Schedule::setCourse(const int room, const int timeSlot, const int course) {
 	return true;
 }
 
-int Schedule::getNumRooms() const {
+const int Schedule::getNumRooms() {
 	return this->nRooms;
 }
 
-int Schedule::getNumTimeSlots() const {
+const int Schedule::getNumTimeSlots() {
 	return this->nTimeSlots;
 }
 
 void Schedule::reset() {
-	memset(schedule.get(), -1, nRooms * nTimeSlots);
+	for (int i = nRooms * nTimeSlots-1; i >= 0; i--) schedule[i] = -1;
 }
 
 Schedule* Schedule::copy() {
-	Schedule cp(nRooms, nTimeSlots);
-	memcpy(cp.schedule.get(), schedule.get(), nRooms*nTimeSlots);
-	return &cp;
+	Schedule* cp = new Schedule(nRooms, nTimeSlots);
+	memcpy(cp->schedule.get(), schedule.get(), nRooms*nTimeSlots);
+	return cp;
+}
+
+int* Schedule::rawDataPointer() {
+	return schedule.get();
 }
